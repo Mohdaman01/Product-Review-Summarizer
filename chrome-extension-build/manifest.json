@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "AI Review Summarizer Pro",
+  "version": "2.0.0",
+  "description": "AI-powered product review summarizer with cloud sync and unlimited usage for Pro users",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://*.amazon.com/*",
+    "https://*.amazon.co.uk/*",
+    "https://*.ebay.com/*",
+    "https://*.etsy.com/*",
+    "https://*.firebaseapp.com/*",
+    "https://*.firebaseio.com/*",
+    "https://www.googleapis.com/*",
+    "https://securetoken.googleapis.com/*",
+    "https://www.gstatic.com/*",
+    "https://review-summarizer-pro.firebaseapp.com/*",
+    "https://review-summarizer-pro-default-rtdb.firebaseio.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.amazon.com/*", "https://*.ebay.com/*", "https://*.etsy.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Summarize Reviews",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "externally_connectable": {
+    "matches": [
+      "https://*.firebaseapp.com/*"
+    ]
+  }
+}

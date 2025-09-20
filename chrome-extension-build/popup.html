@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Summarizer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📝 Review Summarizer</h1>
+            <div class="usage-counter" style="display: none;">
+                Loading...
+            </div>
+        </div>
+
+        <div class="content">
+            <div id="loadingState" class="loading-state hidden">
+                <div class="loader"></div>
+                <p>Analyzing reviews...</p>
+            </div>
+
+            <div id="errorState" class="error-state hidden">
+                <p id="errorMessage">Error occurred</p>
+                <button id="retryBtn" class="btn secondary">Retry</button>
+            </div>
+
+            <div id="noReviewsState" class="no-reviews-state hidden">
+                <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Summarizer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📝 Review Summarizer</h1>
+            <div class="usage-counter">
+                Free summaries left: <span id="usageCount">5</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <div id="loadingState" class="loading-state hidden">
+                <div class="loader"></div>
+                <p>Analyzing reviews...</p>
+            </div>
+
+            <div id="errorState" class="error-state hidden">
+                <p id="errorMessage">Error occurred</p>
+                <button id="retryBtn" class="btn secondary">Retry</button>
+            </div>
+
+            <div id="noReviewsState" class="no-reviews-state hidden">
+                <p>No reviews found on this page. Navigate to a product page with reviews.</p>
+            </div>
+
+            <div id="summaryState" class="summary-state hidden">
+                <div class="summary-section">
+                    <h3>Key Insights</h3>
+                    <div id="keyInsights" class="insights-grid">
+                        <!-- Dynamic content -->
+                    </div>
+                </div>
+
+                <div class="summary-section">
+                    <h3>Pros & Cons</h3>
+                    <div class="pros-cons-container">
+                        <div class="pros">
+                            <h4>✅ Pros</h4>
+                            <ul id="prosList">
+                                <!-- Dynamic content -->
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>❌ Cons</h4>
+                            <ul id="consList">
+                                <!-- Dynamic content -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-section">
+                    <h3>Overall Sentiment</h3>
+                    <div class="sentiment-bar">
+                        <div id="sentimentFill" class="sentiment-fill"></div>
+                        <span id="sentimentText" class="sentiment-text">Analyzing...</span>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button id="newSummaryBtn" class="btn primary">New Summary</button>
+                    <button id="upgradeBtn" class="btn premium">Upgrade to Pro</button>
+                </div>
+            </div>
+
+            <div id="upgradeState" class="upgrade-state hidden">
+                <h3>Upgrade to Pro</h3>
+                <ul class="features-list">
+                    <li>Unlimited summaries</li>
+                    <li>Advanced sentiment analysis</li>
+                    <li>Export summaries</li>
+                    <li>Cloud sync across devices</li>
+                    <li>Summary history</li>
+                    <li>Priority support</li>
+                </ul>
+                <button id="purchaseBtn" class="btn premium large">Get Pro - $4.99/month</button>
+                <button id="backBtn" class="btn secondary">Back</button>
+            </div>
+
+            <div id="initialState" class="initial-state">
+                <p>Click the button below to analyze reviews on this page.</p>
+                <button id="analyzeBtn" class="btn primary large">Analyze Reviews</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

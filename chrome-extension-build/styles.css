@@ -1,0 +1,457 @@
+/* Product Review Summarizer - Popup Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 380px;
+    min-height: 500px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.header h1 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 4px;
+}
+
+.usage-counter {
+    font-size: 12px;
+    color: #666;
+    padding: 4px 8px;
+    background: rgba(103, 126, 234, 0.1);
+    border-radius: 12px;
+    display: inline-block;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    background: white;
+    position: relative;
+    overflow-y: auto;
+}
+
+/* State Management */
+.hidden {
+    display: none !important;
+}
+
+/* Loading State */
+.loading-state {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.loader {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 16px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error State */
+.error-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #e53e3e;
+}
+
+.error-state p {
+    margin-bottom: 16px;
+}
+
+/* No Reviews State */
+.no-reviews-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+}
+
+/* Initial State */
+.initial-state {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.initial-state p {
+    margin-bottom: 20px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Summary State */
+.summary-state {
+    padding-bottom: 20px;
+}
+
+.summary-section {
+    margin-bottom: 24px;
+}
+
+.summary-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #2d3748;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 4px;
+}
+
+/* Key Insights */
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.insight-item {
+    background: rgba(103, 126, 234, 0.1);
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.keyword {
+    font-weight: 500;
+    font-size: 13px;
+    text-transform: capitalize;
+}
+
+.count {
+    background: #667eea;
+    color: white;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+/* Pros and Cons */
+.pros-cons-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.pros h4, .cons h4 {
+    font-size: 14px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.pros ul, .cons ul {
+    list-style: none;
+}
+
+.pros li, .cons li {
+    font-size: 12px;
+    line-height: 1.4;
+    margin-bottom: 6px;
+    padding: 6px 8px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.pros li {
+    border-left: 3px solid #48bb78;
+}
+
+.cons li {
+    border-left: 3px solid #f56565;
+}
+
+/* Sentiment Bar */
+.sentiment-bar {
+    position: relative;
+    height: 32px;
+    background: #e2e8f0;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.sentiment-fill {
+    height: 100%;
+    border-radius: 16px;
+    transition: width 0.8s ease;
+}
+
+.sentiment-fill.positive {
+    background: linear-gradient(90deg, #48bb78, #68d391);
+}
+
+.sentiment-fill.negative {
+    background: linear-gradient(90deg, #f56565, #fc8181);
+}
+
+.sentiment-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 13px;
+    font-weight: 600;
+    color: #2d3748;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn.primary {
+    background: #667eea;
+    color: white;
+}
+
+.btn.primary:hover {
+    background: #5a67d8;
+    transform: translateY(-1px);
+}
+
+.btn.secondary {
+    background: #e2e8f0;
+    color: #4a5568;
+}
+
+.btn.secondary:hover {
+    background: #cbd5e0;
+}
+
+.btn.premium {
+    background: linear-gradient(135deg, #ffd700, #ffed4a);
+    color: #744210;
+    font-weight: 600;
+}
+
+.btn.premium:hover {
+    background: linear-gradient(135deg, #ffed4a, #ffd700);
+    transform: translateY(-1px);
+}
+
+.btn.large {
+    padding: 12px 24px;
+    font-size: 15px;
+    width: 100%;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.actions .btn {
+    flex: 1;
+}
+
+/* Upgrade State */
+.upgrade-state {
+    text-align: center;
+    padding: 20px;
+}
+
+.upgrade-state h3 {
+    margin-bottom: 16px;
+    color: #2d3748;
+}
+
+.features-list {
+    list-style: none;
+    text-align: left;
+    margin: 20px 0;
+    background: rgba(103, 126, 234, 0.05);
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.features-list li {
+    padding: 6px 0;
+    font-size: 14px;
+    color: #4a5568;
+    position: relative;
+    padding-left: 20px;
+}
+
+.features-list li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #48bb78;
+    font-weight: bold;
+}
+
+/* Authentication Styles */
+.auth-prompt {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.auth-prompt h3 {
+    color: #374151;
+    margin-bottom: 16px;
+    font-size: 18px;
+}
+
+.auth-prompt p {
+    color: #6b7280;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.pro-badge {
+    background: linear-gradient(135deg, #ffd700, #ffed4a);
+    color: #744210;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 8px;
+}
+
+/* Updated usage counter styles */
+.usage-counter {
+    font-size: 12px;
+    color: #666;
+    padding: 4px 8px;
+    background: rgba(103, 126, 234, 0.1);
+    border-radius: 12px;
+    display: inline-block;
+}
+
+.usage-counter .pro-badge {
+    margin-left: 0;
+    margin-right: 8px;
+}
+
+/* Loading improvements */
+.loading-state p {
+    margin-top: 8px;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Enhanced error state */
+.error-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #e53e3e;
+}
+
+.error-state p {
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+
+/* Enhanced upgrade section */
+.upgrade-state .features-list {
+    list-style: none;
+    text-align: left;
+    margin: 20px 0;
+    background: rgba(103, 126, 234, 0.05);
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.upgrade-state .features-list li {
+    padding: 6px 0;
+    font-size: 14px;
+    color: #4a5568;
+    position: relative;
+    padding-left: 20px;
+}
+
+.upgrade-state .features-list li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #48bb78;
+    font-weight: bold;
+}
+@media (max-width: 400px) {
+    .container {
+        width: 320px;
+    }
+    
+    .pros-cons-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .insights-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animation for state transitions */
+.content > div {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scrollbar styling */
+.content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background: rgba(103, 126, 234, 0.3);
+    border-radius: 2px;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+    background: rgba(103, 126, 234, 0.5);
+}

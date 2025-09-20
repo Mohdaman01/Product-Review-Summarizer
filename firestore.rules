@@ -1,0 +1,81 @@
+// Firestore Security Rules for Review Summarizer Extension
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Users can only access their own profile
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      
+      // Prevent users from modifying certain protected fields directly
+      allow update: if request.auth != null 
+        && request.auth.uid == userId 
+        && (!('subscriptionTier' in request.resource.data) 
+            || resource.data.subscriptionTier == request.resource.data.subscriptionTier)
+        && (!('totalSummariesGenerated' in request.resource.data)
+            || resource.data.totalSummariesGenerated <= request.resource.data.totalSummariesGenerated);
+    }
+    
+    // Users can only access their own summaries
+    match /summaries/{summaryId} {
+      allow read, write: if request.auth != null && request.auth.uid == resource.data.userId;
+      
+      // Allow creation if the user is authenticated and setting their own userId
+      allow create: if request.auth != null && request.auth.uid == request.resource.data.userId;
+    }
+    
+    // Usage logs for analytics (read-only for users, write for functions)
+    match /usage_logs/{logId} {
+      allow read: if request.auth != null && request.auth.uid == resource.data.userId;
+      allow write: if false; // Only cloud functions can write usage logs
+    }
+    
+    // Subscription events (read-only for users)
+    match /subscription_events/{eventId} {
+      allow read: if request.auth != null && request.auth.uid == resource.data.userId;
+      allow write: if false; // Only cloud functions can write subscription events
+    }
+    
+    // Public app configuration (read-only)
+    match /config/{configId} {
+      allow read: if true;
+      allow write: if false; // Only admins can modify config
+    }
+    
+    // Admin-only collections
+    match /admin/{document=**} {
+      allow read, write: if request.auth != null && 
+        request.auth.token.email in [
+          'your-admin-email@gmail.com',
+          'support@yourapp.com'
+        ];
+    }
+  }
+}
+
+// Additional validation functions (can be used in rules above)
+function isValidUser() {
+  return request.auth != null && request.auth.uid != null;
+}
+
+function isOwner(userId) {
+  return request.auth != null && request.auth.uid == userId;
+}
+
+function isValidSummary() {
+  return request.resource.data.keys().hasAll(['userId', 'productInfo', 'summary', 'createdAt'])
+    && request.resource.data.userId == request.auth.uid
+    && request.resource.data.productInfo is map
+    && request.resource.data.summary is map;
+}
+
+function hasValidUsageFields() {
+  let data = request.resource.data;
+  return data.monthlySummariesUsed is int 
+    && data.monthlySummariesUsed >= 0
+    && data.todaySummariesUsed is int 
+    && data.todaySummariesUsed >= 0
+    && data.totalSummariesGenerated is int
+    && data.totalSummariesGenerated >= 0;
+}
